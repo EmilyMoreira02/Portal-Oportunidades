@@ -408,3 +408,49 @@ nav ul li a:hover {
     color: #fff;
     font-weight: bold;
 }
+
+.status-inscricao span{
+    color: #28a745;
+    padding: 6px 12px;
+    font-weight: bold;
+    border-radius: 6px;
+    font-size: 19px;
+    cursor: default; 
+    pointer-events: none;
+    border: 1px solid #28a745;
+}
+
+.btn-inscrito:hover {
+    background-color: #28a745;
+    transform: none;
+}
+
+.btn-retirar-acao {
+    text-decoration: none;
+    padding: 12px 20px;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background-color: #dc3545;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-retirar-acao:hover {
+    background-color: #c82333;
+    transform: translateY(-2px);
+}
+
+.status-inscricao {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-size: 18px;
+    font-weight: 700;
+    color: #28a745;
+}

@@ -19,7 +19,7 @@
 
     <div class="container">
         <h2>Criar conta</h2>
-        <form action="#" method="POST">
+        <form id="login-form" onsubmit="return validarERegistrar(event)">
             <div class="input-group">
                 <input type="email" id="email" name="email" placeholder="E-mail" required>
             </div>
@@ -29,8 +29,10 @@
             <div class="input-group">
                 <input type="tel" id="phone" name="phone" placeholder="Telefone" required>
             </div>
-            <button type="submit" class="btn"><a href="login.html">Criar conta</a></button>
+            <button type="submit" class="btn">Criar conta</button>
         </form>
     </div>
+
+    <script src="js/registro.js"></script>
 </body>
 </html>

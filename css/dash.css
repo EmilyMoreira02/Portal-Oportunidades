@@ -119,7 +119,7 @@ body {
     flex-direction: column;
     overflow: hidden;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    border-top: 5px solid  #0800FF; 
+    border-top: 5px solid  #0800FF;
  }
 
 
@@ -137,11 +137,9 @@ body {
     left: 45%;
     transform: translateX(-50%);
     z-index: 10;
-    
     border-left: 15px solid transparent;
     border-right: 15px solid transparent;
     border-bottom: 20px solid white; 
-    
     filter: drop-shadow(0 -2px 1px rgba(0, 0, 0, 0.05));
 }
 
@@ -328,4 +326,8 @@ body {
     .logout-link{
         font-size: 1.3em;
     }
+}
+
+.card.hidden {
+    display: none !important;
 }

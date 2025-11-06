@@ -5,8 +5,8 @@ const oportunidades = [
         subtitulo: "Concurso de Culinária",
         tipo: "concurso",
         area: "culinaria",
-        dataLimite: "2025-09-14",
-        dataEvento: null,
+        dataLimite: "2025-08-20",
+        dataEvento: "2025-09-01",
         publico: "estudante",
         descricao: "Participe do nosso concurso de culinária 'Batalha de Talentos'! Mostre sua criatividade na cozinha e concorra a prêmios incríveis. Regras e inscrições no link.",
         linkExterno: "#"
@@ -17,7 +17,7 @@ const oportunidades = [
         subtitulo: "Palestra sobre Inteligência Artificial",
         tipo: "palestra",
         area: "tecnologia",
-        dataLimite: null,
+        dataLimite: "2025-10-09",
         dataEvento: "2025-11-10",
         publico: "estudante",
         descricao: "Explore as últimas tendências e o futuro da Inteligência Artificial em nossa palestra exclusiva. Palestrante renomado da área. Garanta sua vaga!",
@@ -29,8 +29,8 @@ const oportunidades = [
         subtitulo: "Edital de Fomento à Pesquisa",
         tipo: "edital",
         area: "educacao",
-        dataLimite: "2025-11-20",
-        dataEvento: null,
+        dataLimite: "2025-10-20",
+        dataEvento:"2025-11-01",
         publico: "profissional",
         descricao: "Editais abertos para bolsas de mestrado em diversas áreas. Oportunidade para aprofundar seus estudos e desenvolver pesquisas inovadoras. Consulte os requisitos.",
         linkExterno: "#"
@@ -41,8 +41,8 @@ const oportunidades = [
         subtitulo: "Concurso de Artes Visuais",
         tipo: "concurso",
         area: "artes",
-        dataLimite: "2025-11-25",
-        dataEvento: null,
+        dataLimite: "2025-10-25",
+        dataEvento: "2025-11-06",
         publico: "estudante",
         descricao: "Mostre seu talento artístico no concurso 'Expo Jovem Artista'! Aberto para estudantes com trabalhos em pintura, escultura, fotografia e mais. Detalhes no link.",
         linkExterno: "#"
@@ -53,7 +53,7 @@ const oportunidades = [
         subtitulo: "Palestra sobre Empreendedorismo",
         tipo: "palestra",
         area: "negocios",
-        dataLimite: null,
+        dataLimite: "2025-11-20",
         dataEvento: "2025-12-05",
         publico: "geral",
         descricao: "Aprenda as melhores estratégias de marketing para impulsionar seu negócio ou carreira. Palestra focada em resultados e inovação. Vagas limitadas!",
@@ -65,8 +65,8 @@ const oportunidades = [
         subtitulo: "Concurso de Culinária",
         tipo: "concurso",
         area: "culinaria",
-        dataLimite: "2025-11-30",
-        dataEvento: null,
+        dataLimite: "2025-10-30",
+        dataEvento: "2025-11-08",
         publico: "geral",
         descricao: "Participe de uma 'Roda de Ideias Culinárias' e compartilhe suas receitas e técnicas. Um evento para todos os amantes da boa comida!",
         linkExterno: "#"
@@ -81,23 +81,29 @@ const publicoFiltro = document.getElementById('publico-alvo');
 const buscarBtn = document.getElementById('buscar-btn');
 
 function filterCards(category) {
+    const clickedButton = document.querySelector(`.tab-button[onclick="filterCards('${category}')"]`);
+    
+    if (clickedButton && clickedButton.classList.contains('active')) {
+        console.log(`Filtro "${category}" já está ativo. Ação cancelada.`);
+        return; 
+    }
+
     document.querySelectorAll('.tab-button').forEach(button => {
         button.classList.remove('active');
     });
 
-    const clickedButton = document.querySelector(`.tab-button[onclick="filterCards('${category}')"]`);
     if (clickedButton) {
         clickedButton.classList.add('active');
     }
 
     const cards = document.querySelectorAll('.card');
 
-    cards.forEach(card => {
-        if (category === 'all' || card.classList.contains(category)) {
-            card.style.display = 'block';
-        } else {
-            card.style.display = 'none';
-        }
+cards.forEach(card => {
+    if (category === 'all' || card.classList.contains(category)) {
+        card.classList.remove('hidden');
+    } else {
+        card.classList.add('hidden');
+    }
     });
 }
 
