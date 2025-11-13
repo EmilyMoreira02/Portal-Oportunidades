@@ -111,37 +111,26 @@ const areaInteresseDet = document.getElementById("area-interesse-detalhe");
 const dataOportunidadeDet = document.getElementById("data-oportunidade-detalhe");
 const publicoAlvoDet = document.getElementById("publico-alvo-detalhe");
 const descricaoOportunidadeElement = document.getElementById("descricao-oportunidade");
-const acoesContainer = document.getElementById('acoes-container'); // Contêiner para os botões
+const acoesContainer = document.getElementById('acoes-container');
 
 // ----------------------------------------------------------------------
 // --- FUNÇÕES DE CONTROLE (BOTÃO DE INSCRIÇÃO E CALENDÁRIO) ---
 // ----------------------------------------------------------------------
 
-// Função para formatar a data e hora no padrão Google Calendar YYYYMMDDTHHMMSS
 function formatarParaCalendar(dataStr, horarioStr = '08:00') {
     if (!dataStr) return '';
-    
-    // Converte a data (2025-11-20) para 20251120
     const dataFormatada = dataStr.replace(/-/g, '');
-    
-    // Converte a hora (08:00) para 080000 (HHMMSS)
     const [horas, minutos] = horarioStr.split(':');
     const horarioFormatado = `${horas}${minutos}00`;
-    
-    // Retorna o formato final: YYYYMMDDTHHMMSS
     return `${dataFormatada}T${horarioFormatado}`;
 }
 
-// Função para criar o HTML do botão original (Inscreva-se Agora)
 function getBotaoOriginalHTML(oportunidade) {
-    // Determina o ícone com base no tipo de oportunidade
     const iconeClass = (oportunidade.dataEvento) 
         ? "fas fa-calendar-check" 
         : "fas fa-external-link-alt";
-        
     const classeAcao = (oportunidade.dataEvento) 
-        ? "secondary" : "primary"; // Prioriza a inscrição em link externo para datas limites
-
+        ? "secondary" : "primary";
     return `
         <button id="btn-inscrever" class="btn-acao ${classeAcao}" data-link="${oportunidade.linkExterno || '#'}">
             Inscreva-se Agora <i class="${iconeClass}"></i>
@@ -149,60 +138,40 @@ function getBotaoOriginalHTML(oportunidade) {
     `;
 }
 
-// Função que lida com a retirada da inscrição (volta ao botão padrão)
 function handleRetirarInscricaoClick(oportunidadeId, oportunidade) {
     if (!acoesContainer) return;
-
-    // Remove o estado de inscrição do LocalStorage
     const statusKey = `inscrito_${oportunidadeId}`;
     localStorage.removeItem(statusKey);
-    
-    // Substitui o status e o botão de retirada pelo botão original
     acoesContainer.innerHTML = getBotaoOriginalHTML(oportunidade);
-    
-    // Reatribui o evento de clique ao botão que acabou de ser criado (essencial!)
     const novoBotaoInscrever = document.getElementById('btn-inscrever');
     if (novoBotaoInscrever) {
         novoBotaoInscrever.addEventListener('click', (e) => handleInscricaoClick(e, oportunidade));
     }
 }
 
-// A função principal que lida com a inscrição
 function handleInscricaoClick(event, oportunidade) {
     event.preventDefault();
-    
     const statusKey = `inscrito_${oportunidade.id}`;
     
     if (oportunidade.dataEvento) {
-        // Se tem data de evento, abre o Google Calendar
         const horario = oportunidade.horarioEvento || '08:00';
         const dataHoraInicio = formatarParaCalendar(oportunidade.dataEvento, horario);
-        
-        // Assume duração de 1 hora para o evento: (dataInicio/dataFim)
         const datesParameter = `${dataHoraInicio}/${dataHoraInicio}`; 
-        
         const tituloEvento = `Lembrete: ${oportunidade.titulo}`;
         const detalhesEvento = `Você se inscreveu em "${oportunidade.titulo}". Descrição: ${oportunidade.descricao}`;
-        
         const URL_CALENDARIO = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(tituloEvento)}&dates=${datesParameter}&details=${encodeURIComponent(detalhesEvento)}&sf=true&output=xml`;
-
-        // Salva o estado de inscrição e abre o calendário em nova aba
         localStorage.setItem(statusKey, 'true');
         window.open(URL_CALENDARIO, '_blank');
     } else {
-        // Se não tem data de evento (ex: Edital, Concurso com data limite), redireciona para o link externo
         const link = event.currentTarget.dataset.link || '#';
         if (link && link !== '#') {
             window.open(link, '_blank');
         } else {
-             // Apenas confirma a inscrição se não houver link/data de evento
              alert(`Inscrição para ${oportunidade.titulo} confirmada! (Link Externo não disponível)`);
         }
-        // Salva o estado de inscrição (mesmo que seja um edital/concurso)
         localStorage.setItem(statusKey, 'true');
     }
     
-    // 5. TROCA DE BOTÕES
     const novoConteudoHTML = `
         <div class="status-inscricao">
             <span>Inscrito!</span>
@@ -212,15 +181,12 @@ function handleInscricaoClick(event, oportunidade) {
 
     if (acoesContainer) {
         acoesContainer.innerHTML = novoConteudoHTML;
-
-        // 6. Adiciona o evento de clique ao novo botão "Retirar Inscrição"
         const btnRetirar = document.getElementById('btn-retirar-inscricao');
         if (btnRetirar) {
             btnRetirar.addEventListener('click', () => handleRetirarInscricaoClick(oportunidade.id, oportunidade));
         }
     }
 }
-
 
 // ----------------------------------------------------------------------
 // --- FUNÇÕES DE CALENDÁRIO ---
@@ -239,11 +205,9 @@ function renderCalendar(year, month) {
     monthYearElement.textContent = `${monthNames[month]} ${year}`;
 
     calendarBody.innerHTML = "";
-
     let date = 1;
     let row = document.createElement("tr");
 
-    // Preenche os dias vazios no início do mês
     for (let i = 0; i < startingDayOfWeek; i++) {
         const cell = document.createElement("td");
         cell.classList.add("other-month");
@@ -264,36 +228,38 @@ function renderCalendar(year, month) {
             cell.classList.add("today");
         }
 
-        // Verifica se há uma oportunidade com data de evento OU data limite neste dia
         const oportEsp = oportunidades.find((op) => {
-            // Verifica dataEvento (para palestras, workshops, etc.) OU dataLimite (para concursos, editais)
-            const opDateEvent = op.dataEvento;
-            const opDateLimit = op.dataLimite;
-            return (opDateEvent && opDateEvent === cell.dataset.date) || (opDateLimit && opDateLimit === cell.dataset.date);
+            return (op.dataEvento && op.dataEvento === cell.dataset.date) || 
+                   (op.dataLimite && op.dataLimite === cell.dataset.date);
         });
+
+        const selectedId = localStorage.getItem("oportunidadeId");
 
         if (oportEsp) {
             cell.classList.add("event-day");
             cell.title = `${oportEsp.titulo} - ${oportEsp.subtitulo}`;
-            
-            // *** AQUI É O AJUSTE PARA O CLIQUE NO CALENDÁRIO ***
+
+            if (oportEsp.id == selectedId) {
+                cell.classList.add("selected-day");
+            }
+
+            // 🔄 Corrigido: muda detalhes e destaca dia SEM recarregar a página
             cell.addEventListener("click", () => {
-                const eventId = oportEsp.id;
-                localStorage.setItem("oportunidadeId", eventId); // Salva o ID
-                window.location.href = "detalhes.html"; // Redireciona para recarregar com o novo ID
+                localStorage.setItem("oportunidadeId", oportEsp.id);
+                renderCalendar(year, month); // Atualiza o destaque no calendário
+                loadDetalhesOportunidade();  // Atualiza os detalhes
             });
         }
 
         row.appendChild(cell);
 
-        if (new Date(year, month, date).getDay() === 6) { // 6 é Sábado
+        if (new Date(year, month, date).getDay() === 6) {
             calendarBody.appendChild(row);
             row = document.createElement("tr");
         }
         date++;
     }
-    
-    // Preenche os dias vazios no final do mês
+
     while (row.cells.length < 7) {
         const cell = document.createElement("td");
         cell.classList.add("other-month");
@@ -312,7 +278,6 @@ function goToNextMonth() {
     renderCalendar(currentDate.getFullYear(), currentDate.getMonth());
 }
 
-
 // ----------------------------------------------------------------------
 // --- FUNÇÃO DE CARREGAMENTO DE DETALHES ---
 // ----------------------------------------------------------------------
@@ -322,14 +287,12 @@ function loadDetalhesOportunidade() {
     const oportunidade = oportunidades.find((op) => op.id == oportId);
 
     if (!oportunidade) {
-        // ... (Mensagem de erro) ...
         if (tituloOportunidadeElement) tituloOportunidadeElement.textContent = "Oportunidade não encontrada";
         if (descricaoOportunidadeElement) descricaoOportunidadeElement.textContent =
-            "Desculpe, não conseguimos encontrar os detalhes para esta oportunidade. Verifique se o link está correto ou volte para a página principal.";
+            "Desculpe, não conseguimos encontrar os detalhes para esta oportunidade.";
         return;
     }
 
-    // --- CÓDIGO DE PREENCHIMENTO DE DETALHES ---
     if (tituloOportunidadeElement) tituloOportunidadeElement.textContent = oportunidade.titulo;
     if (subtituloOportunidadeElement) subtituloOportunidadeElement.textContent = oportunidade.subtitulo;
     if (tipoOportunidadeDet) tipoOportunidadeDet.textContent =
@@ -340,14 +303,10 @@ function loadDetalhesOportunidade() {
     let displayDate = "";
     let dateLabel = "";
     if (oportunidade.dataEvento) {
-        displayDate = oportunidade.dataEvento
-            ? oportunidade.dataEvento.split("-").reverse().join("/")
-            : "Data Indisponível";
+        displayDate = oportunidade.dataEvento.split("-").reverse().join("/");
         dateLabel = "Data do Evento:";
     } else if (oportunidade.dataLimite) {
-        displayDate = oportunidade.dataLimite
-            ? oportunidade.dataLimite.split("-").reverse().join("/")
-            : "Data Limite:";
+        displayDate = oportunidade.dataLimite.split("-").reverse().join("/");
         dateLabel = "Data Limite:";
     } else {
         displayDate = "Indefinida";
@@ -357,68 +316,42 @@ function loadDetalhesOportunidade() {
     if (dataOportunidadeDet) {
         dataOportunidadeDet.textContent = displayDate;
         const labelElement = dataOportunidadeDet.previousElementSibling;
-        if (labelElement) {
-            labelElement.textContent = `${dateLabel} `;
-        }
+        if (labelElement) labelElement.textContent = `${dateLabel} `;
     }
 
     if (publicoAlvoDet) publicoAlvoDet.textContent =
-        oportunidade.publico.charAt(0).toUpperCase() +
-        oportunidade.publico.slice(1);
+        oportunidade.publico.charAt(0).toUpperCase() + oportunidade.publico.slice(1);
     if (descricaoOportunidadeElement) descricaoOportunidadeElement.textContent = oportunidade.descricao;
-    
 
-    // --- LÓGICA DO BOTÃO DE INSCRIÇÃO ---
     const statusKey = `inscrito_${oportunidade.id}`;
     const jaInscrito = localStorage.getItem(statusKey) === 'true';
 
-    if (!acoesContainer) {
-        console.error("Erro: O contêiner de ações ('acoes-container') não foi encontrado.");
-        return;
-    }
+    if (!acoesContainer) return;
 
     if (jaInscrito) {
-        // Renderiza o botão "Inscrito" com o botão de retirada
-        const novoConteudoHTML = `
+        acoesContainer.innerHTML = `
             <div class="status-inscricao">
                 <span>Inscrito!</span>
                 <button id="btn-retirar-inscricao" class="btn-retirar-acao">Retirar Inscrição</button>
             </div>
         `;
-        acoesContainer.innerHTML = novoConteudoHTML;
-
         const btnRetirar = document.getElementById('btn-retirar-inscricao');
         if (btnRetirar) {
             btnRetirar.addEventListener('click', () => handleRetirarInscricaoClick(oportunidade.id, oportunidade));
         }
-
     } else {
-        // Renderiza o botão "Inscreva-se Agora"
         acoesContainer.innerHTML = getBotaoOriginalHTML(oportunidade);
-
         const novoBotaoInscrever = document.getElementById('btn-inscrever');
         if (novoBotaoInscrever) {
-            // Anexa a função de clique
             novoBotaoInscrever.addEventListener('click', (e) => handleInscricaoClick(e, oportunidade));
         }
-    }
-
-    // Remove o evento antigo do botão que não será mais usado
-    const adicionarCalendarioBtn = document.getElementById("adicionar-calendario");
-    if (adicionarCalendarioBtn) {
-        adicionarCalendarioBtn.style.display = 'none'; // Esconde ou remove
     }
 }
 
 // --- INICIALIZAÇÃO ---
 
 document.addEventListener("DOMContentLoaded", () => {
-    // 1. Carrega os detalhes da oportunidade e configura a lógica do botão
-    if (tituloOportunidadeElement) {
-        loadDetalhesOportunidade();
-    }
-    
-    // 2. Carrega o calendário se os elementos existirem
+    if (tituloOportunidadeElement) loadDetalhesOportunidade();
     if (monthYearElement) {
         renderCalendar(currentDate.getFullYear(), currentDate.getMonth());
         if (prevMonthBtn) prevMonthBtn.addEventListener("click", goToPrevMonth);
