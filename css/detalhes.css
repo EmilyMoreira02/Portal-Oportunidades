@@ -454,3 +454,9 @@ nav ul li a:hover {
     font-weight: 700;
     color: #28a745;
 }
+.selected-day {
+    background-color: #2e7d32;
+    color: white;
+    border-radius: 0%;
+    font-weight: bold;
+}
