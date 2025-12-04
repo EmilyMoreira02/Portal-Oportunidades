@@ -1,0 +1,325 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f7f6;
+    color: #333;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 0 20px;
+}
+
+/* --- HEADER --- */
+.header {
+    background-color: #000d97;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 40px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.header .logo {
+    display: flex;
+    align-items: center;
+}
+
+.header .logo img {
+    height: 85px;
+    margin-right: 15px;
+}
+
+.header h1 {
+    font-size: 1.2em;
+    font-weight: 600;
+}
+
+.nav-menu a {
+    color: white;
+    text-decoration: none;
+    margin-left: 25px;
+    font-size: 1.1em;
+    transition: color 0.3s ease;
+}
+
+.nav-menu a:hover {
+    color: #028ACD;
+    text-decoration: underline;
+}
+
+.logout-link {
+    text-decoration: none !important; 
+    color: white !important;
+    margin-left: 30px !important; 
+    
+    background-color: #000d97; 
+    padding: 8px 15px;
+    border-radius: 5px;
+    font-size: 1em !important;
+    font-weight: 600;
+    transition: background-color 0.3s ease, opacity 0.3s ease;
+}
+
+.logout-link:hover {
+    background-color: #0056b3; 
+    color: white; 
+    text-decoration: none !important;
+}
+
+.primeira-cor {
+    color: #007bff;
+}
+
+/* --- BLOCO DE CONTEÚDO PRINCIPAL (Missão) --- */
+
+.sobre-nos-content {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.missao-bloco {
+    background-color: white;
+    padding: 30px;
+    margin-bottom: 30px;
+    border-radius: 10px; 
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); 
+    position: relative; 
+    /* Efeito de Dinamismo */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.missao-bloco:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+.bloco-titulo {
+    background-color: #002fff; 
+    color: white;
+    padding: 20px 20px;
+    text-align: center;
+    /* Encaixa o título no topo do bloco branco */
+    margin: -30px -30px 30px -30px; 
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px 10px 0 0; 
+}
+
+.bloco-titulo h2 {
+    font-size: 1.8em;
+    font-weight: 600;
+    margin: 0;
+}
+
+.missao-bloco h3 {
+    color: #002fff; 
+    font-size: 1.5em; 
+    font-weight: 700;
+    border-bottom: 3px solid #002fff; 
+    padding-bottom: 5px;
+    margin-bottom: 20px;
+    width: fit-content; 
+    max-width: 100%;
+}
+
+.missao-texto p {
+    font-size: 1em;
+    line-height: 1.7;
+    color: #444;
+    margin-bottom: 15px;
+    text-align: justify;
+}
+
+/* --- BLOCOS INFERIORES (Desafio e Lista) - UNIFORMES E DINÂMICOS --- */
+
+.desafio-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 30px;
+    margin-bottom: 40px;
+    min-height: 350px; 
+    align-items: stretch; /* Garante que os filhos se estiquem na altura */
+}
+
+.bloco-conteudo {
+    flex: 1; 
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    
+    /* Configurações para uniformidade */
+    display: flex;
+    flex-direction: column;
+    
+    /* Efeito de Dinamismo */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.bloco-conteudo:hover {
+    transform: translateY(-5px); 
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2); 
+}
+
+.bloco-conteudo h3 {
+    color: #002fff;
+    font-size: 1.3em;
+    font-weight: 600;
+    border-bottom: 3px solid #002fff;
+    padding-bottom: 5px;
+    margin-bottom: 20px;
+    width: fit-content; 
+    max-width: 100%;
+}
+
+/* Estilo do bloco de texto - Desafio */
+.bloco-conteudo.desafio p {
+    font-size: 1em;
+    line-height: 1.7;
+    color: #444;
+    text-align: justify;
+}
+
+/* Estilo do bloco de lista - O Que Você Encontra */
+.bloco-conteudo.lista ul {
+    list-style: none;
+    padding: 0;
+}
+
+.bloco-conteudo.lista ul li {
+    font-size: 1em;
+    line-height: 1.8;
+    color: #333;
+    margin-bottom: 5px;
+    display: flex;
+    align-items: flex-start;
+}
+
+.check-icon {
+    color: #002fff;
+    font-weight: bold;
+    margin-right: 10px;
+    font-size: 1.2em;
+}
+
+/* --- FOOTER --- */
+.footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 25px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.footer p {
+    font-size: 0.9em;
+}
+
+.social-links {
+    display: flex;
+    align-items: center;
+}
+
+.social-links a {
+    margin-left: 15px;
+    text-decoration: none;
+    color: white;
+    font-size: 0.9em;
+    transition: color 0.3s ease;
+}
+
+.social-links a:hover {
+    color: #ccc;
+}
+
+.social-links img {
+    width: 24px;
+    height: 24px;
+    vertical-align: middle;
+}
+
+/* --- MEDIA QUERIES (Responsividade) --- */
+
+@media (max-width: 768px) {
+    .header {
+        flex-direction: column;
+        padding: 15px;
+    }
+
+    .header h1 {
+        font-size: 1.5em;
+        margin-top: 10px;
+    }
+
+    .nav-menu {
+        margin-top: 15px;
+    }
+
+    .nav-menu a {
+        margin: 0 10px;
+    }
+
+    .container, .sobre-nos-content {
+        padding: 0 15px;
+        margin: 20px auto;
+    }
+
+    .missao-bloco h3 {
+        font-size: 1.3em;
+        width: 100%; 
+        max-width: 100%;
+    }
+    
+    .bloco-titulo {
+        padding: 15px;
+        /* Reajusta a margem para o padding de 15px do media query */
+        margin: -30px -30px 20px -30px;
+    }
+
+    .desafio-container {
+        flex-direction: column; 
+        gap: 20px; 
+        min-height: auto; 
+    }
+
+    .bloco-conteudo {
+        flex: none; 
+        width: 100%;
+        height: auto; /* Altura automática no mobile */
+    }
+
+    /* O footer também deve ser responsivo */
+    .footer {
+        flex-direction: column;
+        text-align: center;
+        padding: 15px 10px;
+    }
+
+    .social-links {
+        margin-top: 10px;
+        justify-content: center;
+        width: 100%;
+    }
+
+    .social-links a {
+        margin: 0 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .header h1 {
+        font-size: 1.3em;
+    }
+}
