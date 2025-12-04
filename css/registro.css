@@ -31,6 +31,7 @@ body {
 
 .back-button:hover {
     transform: scale(1.05);
+    text-decoration: none;
 }
 
 .back-button .material-icons {
@@ -55,8 +56,8 @@ body {
 }
 
 .input-group {
+    position: relative; 
     margin-bottom: 20px;
-    text-align: left;
 }
 
 .input-group input {
@@ -68,6 +69,18 @@ body {
     font-size: 1rem;
     box-sizing: border-box;
     transition: box-shadow 0.3s ease;
+}
+
+.input-group .material-icons {
+    position: absolute;
+    top: 50%; 
+    transform: translateY(-50%); 
+    right: 15px; 
+    cursor: pointer;
+    user-select: none; 
+    font-size: 20px;
+    color: #000000;
+    z-index: 10;
 }
 
 .input-group input:focus {
@@ -113,19 +126,33 @@ a:hover {
     color: #0000CC;
 }
 
-@media (max-width: 480px) {
-    .container {
-        width: 90%;
-        padding: 25px;
+@media screen and (max-width: 480px) {
+    
+    body {
+        padding-left: 7px !important;
+        padding-right: 67px !important;
+        padding-top: 80px !important; 
+        display: block !important;
+        min-height: auto !important;
     }
+
+    .container {
+        width: 90% !important;
+        padding: 25px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
     .back-button-container {
         top: 15px;
-        left: 15px;
+        left: 25px; 
     }
+    
     .back-button {
         width: 40px;
         height: 40px;
     }
+    
     .back-button .material-icons {
         font-size: 30px;
     }
