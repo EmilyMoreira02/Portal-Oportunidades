@@ -126,34 +126,50 @@ a:hover {
     color: #0000CC;
 }
 
-@media screen and (max-width: 480px) {
+@media (max-width: 600px) {
     
+    /* 1. Ajuste do Body para "Respiro" Vertical
+       - Adiciona padding superior e inferior para que o conteúdo não encoste nas bordas.
+       - Alinha o conteúdo ao topo (`flex-start`) em vez de estritamente ao centro, o que é melhor quando o teclado virtual pode aparecer.
+    */
     body {
-        padding-left: 7px !important;
-        padding-right: 67px !important;
-        padding-top: 80px !important; 
-        display: block !important;
-        min-height: auto !important;
+        padding: 40px 10px; /* Mais padding vertical para respiro */
+        align-items: flex-start;
+        min-height: auto; /* Deixa o conteúdo ditar a altura */
     }
 
+    /* 2. Ajuste do Contêiner Principal
+       - Garante que ele ocupe quase toda a largura para o máximo aproveitamento do espaço.
+       - Reduz o padding interno para ser mais compacto.
+    */
     .container {
-        width: 90% !important;
-        padding: 25px;
-        margin-left: auto;
-        margin-right: auto;
+        padding: 30px 20px; /* Reduz o padding interno */
+        max-width: 95%; /* Garante que há uma pequena margem lateral */
+        margin: 0 auto; /* Centraliza */
     }
-    
+
     .back-button-container {
-        top: 15px;
-        left: 25px; 
+        margin-bottom: 100px;
+    }
+
+    /* 4. Ajuste da Tipografia
+       - Reduz o tamanho do título para caber bem em telas pequenas.
+    */
+    .container h2 {
+        font-size: 2rem; 
+        margin-bottom: 25px; 
     }
     
-    .back-button {
-        width: 40px;
-        height: 40px;
+    .input-group {
+        margin-bottom: 18px; 
     }
     
-    .back-button .material-icons {
-        font-size: 30px;
+    .input-group input {
+        padding: 12px; /* Reduz ligeiramente o padding do input */
+    }
+
+    .btn {
+        padding: 13px; /* Reduz ligeiramente o padding do botão */
+        font-size: 1rem;
     }
 }
