@@ -264,11 +264,15 @@ body {
     }
 
     .nav-menu {
-        margin-top: 15px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        margin-top: 10px;
     }
 
     .nav-menu a {
-        margin: 0 10px;
+        margin: 5px 15px;
+        font-size: 0.95em;
     }
 
     .container, .sobre-nos-content {
@@ -300,6 +304,16 @@ body {
         height: auto; /* Altura automática no mobile */
     }
 
+    .logout-link {
+        margin: 5px 15px !important;
+        display: inline;
+        font-size: 0.95em !important;
+    }
+
+    .logout-link i {
+        font-size: 17px;
+    }
+
     /* O footer também deve ser responsivo */
     .footer {
         flex-direction: column;
@@ -315,11 +329,5 @@ body {
 
     .social-links a {
         margin: 0 10px;
-    }
-}
-
-@media (max-width: 480px) {
-    .header h1 {
-        font-size: 1.3em;
     }
 }

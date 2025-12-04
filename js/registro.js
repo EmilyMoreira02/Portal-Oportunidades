@@ -53,9 +53,27 @@ function validarERegistrar(event) {
     }
 }
 
+function mostrarSenhaEye() {
+    const passwordInput = document.getElementById('password');
+    const mostrarSenha = document.getElementById('eye-password');
+
+    if (passwordInput.type === 'password') {
+        passwordInput.type = 'text';
+        mostrarSenha.textContent = 'visibility';
+    } else {
+        passwordInput.type = 'password';
+        mostrarSenha.textContent = 'visibility_off';
+    }
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     const formRegistro = document.getElementById('registro-form');
     if (formRegistro) {
         formRegistro.addEventListener('submit', validarERegistrar);
+    }
+
+    const mostrarSenha = document.getElementById('eye-password');
+    if (mostrarSenha) {
+        mostrarSenha.addEventListener('click', mostrarSenhaEye);
     }
 });

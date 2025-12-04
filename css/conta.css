@@ -220,6 +220,32 @@ body {
 }
 
 @media (max-width: 600px) {
+    .header {
+        flex-direction: column;
+        padding: 20px;
+        text-align: center;
+    }
+
+    .header .logo {
+        margin-bottom: 15px;
+    }
+
+    .header .logo img {
+        height: 70px;
+    }
+
+    .nav-menu {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        margin-top: 10px;
+    }
+
+    .nav-menu a {
+        margin: 5px 15px;
+        font-size: 0.95em;
+    }
+    
     .profile-form-container {
         padding: 20px;
     }
@@ -248,6 +274,31 @@ body {
     
     .form-actions {
         justify-content: space-between;
+    }
+
+    .logout-link {
+        margin: 5px 15px !important;
+        display: inline;
+        font-size: 0.95em !important;
+    }
+
+    .logout-link i {
+        font-size: 17px;
+    }
+
+    .footer {
+        flex-direction: column;
+        padding: 20px 15px;
+        text-align: center;
+    }
+
+    .footer p {
+        margin-bottom: 10px; 
+    }
+
+    .social-links {
+        margin-top: 10px; 
+        justify-content: center;
     }
 }
 .footer {
@@ -305,7 +356,6 @@ body {
     transition: opacity 0.3s ease-in-out; 
 }
 
-/* Estilos de cor (mantidos ou ajustados) */
 .mensagem-status.sucesso {
     background-color: #65b867; 
     border: 1px solid #425f36;

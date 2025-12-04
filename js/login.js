@@ -1,6 +1,24 @@
 // Arquivo: js/login.js
 
+function mostrarSenhaEye() {
+    const passwordInput = document.getElementById('password');
+    const mostrarSenha = document.getElementById('eye-password');
+
+    if (passwordInput.type === 'password') {
+        passwordInput.type = 'text';
+        mostrarSenha.textContent = 'visibility';
+    } else {
+        passwordInput.type = 'password';
+        mostrarSenha.textContent = 'visibility_off';
+    }
+}
+
 document.addEventListener('DOMContentLoaded', () => {
+    const mostrarSenha = document.getElementById('eye-password');
+    if (mostrarSenha) {
+        mostrarSenha.addEventListener('click', mostrarSenhaEye);
+    }
+    
     const formLogin = document.getElementById('login-form');
     
     if (formLogin) {
