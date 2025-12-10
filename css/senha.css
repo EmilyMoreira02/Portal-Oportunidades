@@ -7,12 +7,15 @@ body {
     min-height: 100vh;
     background: linear-gradient(135deg, #9ac4ff, #1f62e6);
     position: relative;
+    padding-left: 7px;
+    padding-right: 7px;
 }
 
 .back-button-container {
     position: absolute;
     top: 20px;
     left: 20px;
+    z-index: 10;
 }
 
 .back-button {
@@ -30,6 +33,7 @@ body {
 
 .back-button:hover {
     transform: scale(1.05);
+    text-decoration: none;
 }
 
 .back-button .material-icons {
@@ -44,6 +48,7 @@ body {
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
     text-align: center;
     width: 350px;
+    max-width: 90%;
 }
 
 .container h2 {
@@ -52,18 +57,48 @@ body {
     margin-bottom: 30px;
 }
 
+.container h3 {
+    color: #0000FF;
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+}
+
 .input-group {
+    position: relative;
     margin-bottom: 20px;
 }
 
 .input-group input {
     width: 100%;
     padding: 15px;
-    border: none;
+    border: 1px solid #ccc;
     border-radius: 8px;
-    background-color: #F0F0F0;
+    background-color: #E6EEF9;
     font-size: 1rem;
     box-sizing: border-box;
+    transition: box-shadow 0.3s ease;
+}
+
+.input-group input:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px #9ac4ff;
+}
+
+/* Estilos para os inputs da seção de nova senha */
+#new-password-section input {
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #E6EEF9;
+    font-size: 1rem;
+    box-sizing: border-box;
+    margin-bottom: 15px;
+    transition: box-shadow 0.3s ease;
+}
+
+#new-password-section input:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px #9ac4ff;
 }
 
 .btn {
@@ -73,44 +108,225 @@ body {
     font-weight: bold;
     border: none;
     border-radius: 8px;
-    background-color: #0000FF;
-    color: #FFFFFF;
+    background-color: #0303ff;
+    color: #d8e5fe;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.1s ease;
+    text-decoration: none;
+    display: block;
 }
 
 .btn:hover {
     background-color: #0000CC;
+    color: #b3c6ff;
+    transform: translateY(-1px);
+}
+
+.primary-btn {
+    margin-top: 10px;
 }
 
 .message-success {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-top: 30px;
-    color: #4CAF50;
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #d4edda;
+    border: 1px solid #c3e6cb;
+    border-radius: 8px;
+    color: #155724;
 }
 
 .message-success .material-icons {
     font-size: 28px;
     margin-right: 10px;
+    color: #28a745;
+}
+
+.message-success p {
+    margin: 0;
+    font-size: 0.95rem;
 }
 
 .message-success.hidden {
     display: none;
 }
 
-@media (max-width: 480px) {
-    .container {
-        width: 90%;
-        padding: 20px;
-    }
-}
-
 a {
-    color: #84a1f9;
+    color: #0000FF;
+    text-decoration: none;
 }
 
 a:hover {
-    color: #779bfe;
+    color: #0000CC;
+    text-decoration: underline;
+}
+
+/* ===== RESPONSIVIDADE ===== */
+
+/* Tablets - até 768px */
+@media (max-width: 768px) {
+    .container {
+        width: 90%;
+        padding: 35px 25px;
+    }
+
+    .container h2 {
+        font-size: 2.2rem;
+        margin-bottom: 25px;
+    }
+
+    .container h3 {
+        font-size: 1.4rem;
+    }
+
+    .back-button {
+        width: 45px;
+        height: 45px;
+    }
+
+    .back-button .material-icons {
+        font-size: 32px;
+    }
+}
+
+/* Smartphones - até 480px */
+@media (max-width: 480px) {
+    body {
+        padding: 20px 10px;
+        align-items: center;
+    }
+
+    .back-button-container {
+        top: 15px;
+        left: 15px;
+    }
+
+    .back-button {
+        width: 40px;
+        height: 40px;
+    }
+
+    .back-button .material-icons {
+        font-size: 28px;
+    }
+
+    .container {
+        padding: 30px 20px;
+        width: 90%;
+        max-width: 95%;
+    }
+
+    .container h2 {
+        font-size: 2rem;
+        margin-bottom: 25px;
+    }
+
+    .container h3 {
+        font-size: 1.3rem;
+        margin-bottom: 12px;
+    }
+
+    .input-group {
+        margin-bottom: 18px;
+    }
+
+    .input-group input,
+    #new-password-section input {
+        padding: 12px;
+        font-size: 0.95rem;
+    }
+
+    #new-password-section input {
+        margin-bottom: 12px;
+    }
+
+    .btn {
+        padding: 13px;
+        font-size: 1rem;
+    }
+
+    .message-success {
+        padding: 12px;
+        margin-top: 15px;
+    }
+
+    .message-success .material-icons {
+        font-size: 24px;
+        margin-right: 8px;
+    }
+
+    .message-success p {
+        font-size: 0.9rem;
+    }
+}
+
+/* Smartphones muito pequenos - até 360px */
+@media (max-width: 360px) {
+    body {
+        padding: 15px 8px;
+    }
+
+    .back-button-container {
+        top: 12px;
+        left: 12px;
+    }
+
+    .back-button {
+        width: 38px;
+        height: 38px;
+    }
+
+    .back-button .material-icons {
+        font-size: 26px;
+    }
+
+    .container {
+        padding: 25px 15px;
+        width: 92%;
+    }
+
+    .container h2 {
+        font-size: 1.8rem;
+        margin-bottom: 20px;
+    }
+
+    .container h3 {
+        font-size: 1.2rem;
+        margin-bottom: 10px;
+    }
+
+    .input-group {
+        margin-bottom: 15px;
+    }
+
+    .input-group input,
+    #new-password-section input {
+        padding: 10px;
+        font-size: 0.9rem;
+    }
+
+    #new-password-section input {
+        margin-bottom: 10px;
+    }
+
+    .btn {
+        padding: 12px;
+        font-size: 0.95rem;
+    }
+
+    .message-success {
+        padding: 10px;
+        margin-top: 12px;
+    }
+
+    .message-success .material-icons {
+        font-size: 22px;
+        margin-right: 6px;
+    }
+
+    .message-success p {
+        font-size: 0.85rem;
+    }
 }

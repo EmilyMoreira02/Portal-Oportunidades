@@ -7,6 +7,8 @@ body {
     min-height: 100vh;
     background: linear-gradient(135deg, #9ac4ff, #1f62e6);
     position: relative;
+    padding-left: 7px;
+    padding-right: 7px;
 }
 
 .back-button-container {
@@ -45,7 +47,7 @@ body {
     border-radius: 15px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
     text-align: center;
-    width: 380px;
+    width: 350px;
     max-width: 90%;
 }
 
@@ -63,7 +65,7 @@ body {
 .input-group input {
     width: 100%;
     padding: 15px;
-    border: none;
+    border: 1px solid #ccc;
     border-radius: 8px;
     background-color: #E6EEF9;
     font-size: 1rem;
@@ -103,16 +105,17 @@ body {
     font-weight: bold;
     border: none;
     border-radius: 8px;
-    background-color: #0000FF;
-    color: #FFFFFF;
+    background-color: #0303ff;
+    color: #d8e5fe;
     cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.1s ease;
+    transition: background-color 0.3s ease, transform 0.1s ease, color 0.3s ease;
     text-decoration: none;
     display: block;
 }
 
 .btn:hover {
     background-color: #0000CC;
+    color: #b3c6ff;
     transform: translateY(-1px);
 }
 
@@ -126,51 +129,128 @@ a:hover {
     color: #0000CC;
 }
 
-@media (max-width: 600px) {
-    
-    /* 1. Ajuste do Body para "Respiro" Vertical
-       - Adiciona padding superior e inferior para que o conteúdo não encoste nas bordas.
-       - Alinha o conteúdo ao topo (`flex-start`) em vez de estritamente ao centro, o que é melhor quando o teclado virtual pode aparecer.
-    */
-    body {
-        padding: 40px 10px; /* Mais padding vertical para respiro */
-        align-items: flex-start;
-        min-height: auto; /* Deixa o conteúdo ditar a altura */
+/* ===== RESPONSIVIDADE ===== */
+
+/* Tablets - até 768px */
+@media (max-width: 768px) {
+    .container {
+        width: 90%;
+        padding: 35px 25px;
     }
 
-    /* 2. Ajuste do Contêiner Principal
-       - Garante que ele ocupe quase toda a largura para o máximo aproveitamento do espaço.
-       - Reduz o padding interno para ser mais compacto.
-    */
-    .container {
-        padding: 30px 20px; /* Reduz o padding interno */
-        max-width: 95%; /* Garante que há uma pequena margem lateral */
-        margin: 0 auto; /* Centraliza */
+    .container h2 {
+        font-size: 2.2rem;
+        margin-bottom: 25px;
+    }
+
+    .back-button {
+        width: 45px;
+        height: 45px;
+    }
+
+    .back-button .material-icons {
+        font-size: 32px;
+    }
+}
+
+/* Smartphones - até 480px */
+@media (max-width: 480px) {
+    /* Mantém alinhamento central como no login */
+    body {
+        padding: 20px 10px;
+        align-items: center;
     }
 
     .back-button-container {
-        margin-bottom: 100px;
+        top: 15px;
+        left: 15px;
     }
 
-    /* 4. Ajuste da Tipografia
-       - Reduz o tamanho do título para caber bem em telas pequenas.
-    */
+    .back-button {
+        width: 40px;
+        height: 40px;
+    }
+
+    .back-button .material-icons {
+        font-size: 28px;
+    }
+
+    /* Container ajustado */
+    .container {
+        padding: 30px 20px;
+        width: 90%;
+        max-width: 95%;
+    }
+
+    /* Tipografia */
     .container h2 {
-        font-size: 2rem; 
-        margin-bottom: 25px; 
+        font-size: 2rem;
+        margin-bottom: 25px;
     }
-    
+
+    /* Inputs com espaçamento reduzido */
     .input-group {
-        margin-bottom: 18px; 
+        margin-bottom: 15px;
     }
-    
+
     .input-group input {
-        padding: 12px; /* Reduz ligeiramente o padding do input */
+        padding: 12px;
+        font-size: 0.95rem;
+    }
+
+    .input-group .material-icons {
+        font-size: 18px;
+        right: 12px;
+    }
+
+    /* Botão */
+    .btn {
+        padding: 13px;
+        font-size: 1rem;
+    }
+}
+
+/* Smartphones muito pequenos - até 360px */
+@media (max-width: 360px) {
+    body {
+        padding: 15px 8px;
+    }
+
+    .back-button-container {
+        top: 12px;
+        left: 12px;
+    }
+
+    .back-button {
+        width: 38px;
+        height: 38px;
+    }
+
+    .back-button .material-icons {
+        font-size: 26px;
+    }
+
+    .container {
+        padding: 25px 15px;
+        width: 92%;
+    }
+
+    .container h2 {
+        font-size: 1.8rem;
+        margin-bottom: 20px;
+    }
+
+    .input-group {
+        margin-bottom: 12px;
+    }
+
+    .input-group input {
+        padding: 10px;
+        font-size: 0.9rem;
     }
 
     .btn {
-        padding: 13px; /* Reduz ligeiramente o padding do botão */
-        font-size: 1rem;
+        padding: 12px;
+        font-size: 0.95rem;
     }
-
 }

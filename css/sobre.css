@@ -60,7 +60,6 @@ body {
     text-decoration: none !important; 
     color: white !important;
     margin-left: 30px !important; 
-    
     background-color: #000d97; 
     padding: 8px 15px;
     border-radius: 5px;
@@ -73,6 +72,10 @@ body {
     background-color: #0056b3; 
     color: white; 
     text-decoration: none !important;
+}
+
+.logout-link i {
+    font-size: 17px;
 }
 
 .primeira-cor {
@@ -94,7 +97,6 @@ body {
     border-radius: 10px; 
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); 
     position: relative; 
-    /* Efeito de Dinamismo */
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -108,7 +110,6 @@ body {
     color: white;
     padding: 20px 20px;
     text-align: center;
-    /* Encaixa o título no topo do bloco branco */
     margin: -30px -30px 30px -30px; 
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     border-radius: 10px 10px 0 0; 
@@ -139,7 +140,7 @@ body {
     text-align: justify;
 }
 
-/* --- BLOCOS INFERIORES (Desafio e Lista) - UNIFORMES E DINÂMICOS --- */
+/* --- BLOCOS INFERIORES (Desafio e Lista) --- */
 
 .desafio-container {
     display: flex;
@@ -147,7 +148,7 @@ body {
     gap: 30px;
     margin-bottom: 40px;
     min-height: 350px; 
-    align-items: stretch; /* Garante que os filhos se estiquem na altura */
+    align-items: stretch;
 }
 
 .bloco-conteudo {
@@ -156,12 +157,8 @@ body {
     padding: 30px;
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    
-    /* Configurações para uniformidade */
     display: flex;
     flex-direction: column;
-    
-    /* Efeito de Dinamismo */
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -181,7 +178,6 @@ body {
     max-width: 100%;
 }
 
-/* Estilo do bloco de texto - Desafio */
 .bloco-conteudo.desafio p {
     font-size: 1em;
     line-height: 1.7;
@@ -189,7 +185,6 @@ body {
     text-align: justify;
 }
 
-/* Estilo do bloco de lista - O Que Você Encontra */
 .bloco-conteudo.lista ul {
     list-style: none;
     padding: 0;
@@ -250,17 +245,46 @@ body {
     vertical-align: middle;
 }
 
-/* --- MEDIA QUERIES (Responsividade) --- */
+/* ===== RESPONSIVIDADE ===== */
 
-@media (max-width: 768px) {
+/* Tablets - até 1024px */
+@media (max-width: 1024px) {
+    .container, .sobre-nos-content {
+        padding: 0 15px;
+    }
+
     .header {
-        flex-direction: column;
-        padding: 15px;
+        padding: 15px 25px;
     }
 
     .header h1 {
-        font-size: 1.5em;
-        margin-top: 10px;
+        font-size: 1.1em;
+    }
+
+    .nav-menu a {
+        margin-left: 20px;
+        font-size: 1em;
+    }
+
+    .footer {
+        padding: 20px 25px;
+    }
+}
+
+/* Tablets pequenos - até 768px */
+@media (max-width: 768px) {
+    .header {
+        flex-direction: column;
+        padding: 20px;
+        text-align: center;
+    }
+
+    .header .logo {
+        margin-bottom: 15px;
+    }
+
+    .header .logo img {
+        height: 70px;
     }
 
     .nav-menu {
@@ -275,6 +299,16 @@ body {
         font-size: 0.95em;
     }
 
+    .logout-link {
+        margin: 0.5px 10px !important;
+        display: inline;
+        font-size: 0.95em !important;
+    }
+
+    .logout-link i {
+        font-size: 17px;
+    }
+    
     .container, .sobre-nos-content {
         padding: 0 15px;
         margin: 20px auto;
@@ -288,7 +322,6 @@ body {
     
     .bloco-titulo {
         padding: 15px;
-        /* Reajusta a margem para o padding de 15px do media query */
         margin: -30px -30px 20px -30px;
     }
 
@@ -301,24 +334,17 @@ body {
     .bloco-conteudo {
         flex: none; 
         width: 100%;
-        height: auto; /* Altura automática no mobile */
+        height: auto;
     }
 
-    .logout-link {
-        margin: 5px 15px !important;
-        display: inline;
-        font-size: 0.95em !important;
-    }
-
-    .logout-link i {
-        font-size: 17px;
-    }
-
-    /* O footer também deve ser responsivo */
     .footer {
         flex-direction: column;
         text-align: center;
-        padding: 15px 10px;
+        padding: 20px;
+    }
+
+    .footer p {
+        margin-bottom: 15px;
     }
 
     .social-links {
@@ -329,5 +355,91 @@ body {
 
     .social-links a {
         margin: 0 10px;
+    }
+}
+
+/* Smartphones - até 480px */
+@media (max-width: 480px) {
+    .container, .sobre-nos-content {
+        margin: 10px auto;
+        padding: 0 10px;
+    }
+
+    .header {
+        padding: 15px 10px;
+    }
+
+    .header .logo img {
+        height: 60px;
+        margin-right: 10px;
+    }
+
+    .header h1 {
+        font-size: 0.95em;
+    }
+
+    .nav-menu a {
+        margin: 5px 10px;
+        font-size: 0.9em;
+    }
+
+    .logout-link {
+        margin: 0.5px 10px !important;
+        font-size: 0.9em !important;
+        padding: 5px 10px;
+    }
+
+    .logout-link i {
+        font-size: 16px;
+    }
+
+    .bloco-titulo h2 {
+        font-size: 1.4em;
+    }
+
+    .missao-bloco h3 {
+        font-size: 1.2em;
+    }
+
+    .footer {
+        padding: 15px 10px;
+    }
+
+    .footer p {
+        font-size: 0.8em;
+    }
+
+    .social-links a {
+        margin: 0 8px;
+        font-size: 0.85em;
+    }
+
+    .social-links img {
+        width: 20px;
+        height: 20px;
+    }
+}
+
+/* Smartphones muito pequenos - até 360px */
+@media (max-width: 360px) {
+    .header .logo img {
+        height: 50px;
+    }
+
+    .header h1 {
+        font-size: 0.85em;
+    }
+
+    .nav-menu a {
+        font-size: 0.85em;
+        margin: 3px 8px;
+    }
+
+    .logout-link {
+        font-size: 0.85em !important;
+    }
+
+    .bloco-titulo h2 {
+        font-size: 1.2em;
     }
 }
