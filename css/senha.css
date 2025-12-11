@@ -194,7 +194,7 @@ a:hover {
 /* Smartphones - até 480px */
 @media (max-width: 480px) {
     body {
-        padding: 20px 10px;
+        padding: 0.1px 10px;
         align-items: center;
     }
 

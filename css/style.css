@@ -141,11 +141,11 @@ a:hover {
 @media (max-width: 480px) {
     
     .left-section {
-        min-height: 30vh;
+        min-height: 20vh;
     }
 
     .right-section {
-        min-height: 70vh;
+        min-height: 60vh;
     }
     
     .left-section h1 {

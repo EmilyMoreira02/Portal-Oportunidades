@@ -57,25 +57,16 @@ body {
 }
 
 .logout-link {
-    text-decoration: none !important; 
-    color: white !important;
-    margin-left: 30px !important; 
-    background-color: #000d97; 
-    padding: 8px 15px;
-    border-radius: 5px;
-    font-size: 1em !important;
-    font-weight: 600;
-    transition: background-color 0.3s ease, opacity 0.3s ease;
-}
-
-.logout-link:hover {
-    background-color: #0056b3; 
-    color: white; 
-    text-decoration: none !important;
+    color: white;
 }
 
 .logout-link i {
-    font-size: 17px;
+    font-size: 20px;
+}
+
+.logout-link:hover {
+    color: #028ACD;
+    text-decoration: underline !important;
 }
 
 .primeira-cor {
@@ -291,7 +282,7 @@ body {
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
-        margin-top: 10px;
+        margin-top: 16px;
     }
 
     .nav-menu a {
